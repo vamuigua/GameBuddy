@@ -8,6 +8,7 @@
   <%= @forum.question %>
 </p>
 
-
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
+<% if @forum.user == current_user%>
+<%= link_to 'Edit', edit_forum_path(@forum) %>
+<%end%>
 <%= link_to 'Back', forums_path %>

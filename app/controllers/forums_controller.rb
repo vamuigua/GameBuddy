@@ -1,5 +1,7 @@
 class ForumsController < ApplicationController
   before_action :set_forum, only: [:show, :edit, :update, :destroy]
+  #authenticate current_user before performing actions
+  before_action :authenticate_user!, except:[:index, :show]
 
   # GET /forums
   # GET /forums.json
