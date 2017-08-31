@@ -1,5 +1,5 @@
 class ForumsController < ApplicationController
-  before_action :set_forum, only: [:show, :edit, :update, :destroy]
+  before_action :set_forum, only: [:show, :edit, :update, :destroy,:upvote,:downvote]
   #authenticate current_user before performing actions
   before_action :authenticate_user!, except:[:index, :show]
 
@@ -61,6 +61,22 @@ class ForumsController < ApplicationController
       format.html { redirect_to forums_url, notice: 'Forum was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #upvote method
+  def upvote
+    #assign upvote to current user
+    @forum.upvote_by current_user
+    #back redirects the current user to the page they where currently on
+    redirect_back(fallback_location: root_path)
+  end
+
+  #downvote method/action
+  def downvote
+    #assign downvote to current user
+    @forum.downvote_by current_user
+    #back redirects the current user to the page they where currently on
+    redirect_back(fallback_location: root_path) 
   end
 
   private

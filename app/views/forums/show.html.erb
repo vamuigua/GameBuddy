@@ -11,3 +11,16 @@
 	<%= link_to 'Destroy', @forum, method: :delete, data:{confirm:'Are you sure?'}, class:"btn btn-default" %>
 </div>
 <%end%>
+<!--UPVOTE & DOWNVOTE-->
+<div class="btn-group pull-right">
+	<%=link_to like_forum_path(@forum), method: :put, class: "btn btn-default btn-sn" do %>
+	<span class="glyphicon glyphicon-chevron-up"></span>
+	Upvote
+	<%=@forum.get_upvotes.size%>
+	<%end%>
+	<%=link_to dislike_forum_path(@forum), method: :put, class: "btn btn-default btn-sn" do %>
+	<span class="glyphicon glyphicon-chevron-down"></span>
+	Downvote
+	<%=@forum.get_downvotes.size%>
+	<%end%>
+</div>
