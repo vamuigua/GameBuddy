@@ -1,14 +1,13 @@
-<p>
-  <strong>Title:</strong>
-  <%= @forum.title %>
-</p>
+<div class="page-header">
+	<h1><%=@forum.title%><br>
+	<small>Submitted by <%=@forum.user.email%> </small></h1>
+	<h3>Question:<%=@forum.question%></h3>
+</div>
 
-<p>
-  <strong>Question:</strong>
-  <%= @forum.question %>
-</p>
-
-<% if @forum.user == current_user%>
-<%= link_to 'Edit', edit_forum_path(@forum) %>
+<div class="btn-group">
+	<%= link_to 'Back', forums_path, class: "btn btn-default" %>
+	<% if @forum.user == current_user%>
+	<%= link_to 'Edit', edit_forum_path(@forum), class:  "btn btn-default" %>
+	<%= link_to 'Destroy', @forum, method: :delete, data:{confirm:'Are you sure?'}, class:"btn btn-default" %>
+</div>
 <%end%>
-<%= link_to 'Back', forums_path %>
