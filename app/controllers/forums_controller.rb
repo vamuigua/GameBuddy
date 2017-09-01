@@ -12,6 +12,10 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.json
   def show
+    @forum = Forum.find(params[:id])
+    @commentable = @forum
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   # GET /forums/new
@@ -76,7 +80,7 @@ class ForumsController < ApplicationController
     #assign downvote to current user
     @forum.downvote_by current_user
     #back redirects the current user to the page they where currently on
-    redirect_back(fallback_location: root_path) 
+    redirect_back(fallback_location: root_path)
   end
 
   private
