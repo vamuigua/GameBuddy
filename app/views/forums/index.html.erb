@@ -3,7 +3,7 @@
 <div class="forum row clearfix">
 	<h2>
 	<%= link_to forum.title,forum %><br>
-	<small class="author">Created <%=time_ago_in_words(forum.created_at) %> by <%=forum.user.email%></small>
+	<small class="author">Created <%= time_ago_in_words(forum.created_at) %> by <%=forum.user.email%></small>
 	</h2>
 	<!--UPVOTE AND DOWNVOTE-->
 	<div class="btn-group">
