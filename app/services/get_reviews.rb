@@ -1,5 +1,5 @@
-class GetGamesNews
-  def self.gamesnews
+class GetReviews
+  def self.gamereviews
     response = RestClient::Request.execute(
       method: :get,
       url: 'https://api-2445582011268.apicast.io/reviews/?fields=*&limit=10',
