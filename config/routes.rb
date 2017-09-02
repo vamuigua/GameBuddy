@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   root to: "forums#index"
   devise_for :users
 
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+  resources :news
 end
