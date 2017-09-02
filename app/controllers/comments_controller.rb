@@ -22,9 +22,9 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @commentable.comments.find(params[:id])
     if @comment.destroy
-    	redirect_to @commentable, notice: "Deleted comment"
+      redirect_to @commentable, notice: "Deleted comment"
     else
-    	redirect_to @commentable, notice: "Unable to delete comment!"
+      redirect_to @commentable, notice: "Unable to delete comment!"
     end
   end
 
