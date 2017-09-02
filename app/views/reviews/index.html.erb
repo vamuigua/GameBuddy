@@ -1,0 +1,21 @@
+<h1>Reviews</h1>
+<% @reviews.each do |review| %>
+<div class="review row clearfix">
+  <h2>
+  <%= link_to review.title,review %><br>
+  <h3><%=review.introduction%></h3>
+  <small class="author">Submitted <%=time_ago_in_words(review.created_at) %> by <%=review.user.email%></small>
+</div>
+<%end%>
+
+<%= link_to 'New Review', new_review_path %>
+
+<h1>Other Reviews</h1>
+<% @igdb_reviews.each do |review|%>
+<li>Id game:<%= review["id"]%></li>
+<li>Title:<%= review["title"] %></li>
+<p>Introduction:<%= review["introduction"]%></p>
+<p>Content:<%= review["content"] %></p>
+<p>Platform:<%= review["platform"]%></p>
+<p>Rating:<%= review["rating_category"]%></p>
+<%end%>
