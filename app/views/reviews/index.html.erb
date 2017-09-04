@@ -1,21 +1,29 @@
-<h1>Reviews</h1>
-<% @reviews.each do |review| %>
-<div class="review row clearfix">
-  <h2>
-  <%= link_to review.title,review %><br>
-  <h3><%=review.introduction%></h3>
-  <small class="author">Submitted <%=time_ago_in_words(review.created_at) %> by <%=review.user.email%></small>
+<div style="text-align: center;" class="reviews-wrapper">
+	<h1 style="color: white;">Reviews</h1>
+	<hr>
+	<% @reviews.each do |review| %>
+	<div class="my-reviews">
+		<h1><%= link_to review.title,review, style:"color:#F05F40" %></h1>
+		<hr style="width: 20%">
+		<h2><%=review.introduction%></h2>
+		<small class="author">Submitted <%=time_ago_in_words(review.created_at) %> ago by <%=review.user.email%></small><br>
+		<%= link_to "See More", review_path(review)%>
+	</div>
+	<%end%>
+	<hr>
+	<%if user_signed_in?%>
+	<%= link_to 'Create New Review', new_review_path, class:"btn btn-primary" %>
+	<%end%>
+	<div class="other-reviews-wrapper">
+		<h1 style="color: white">Other Reviews</h1>
+		<% @igdb_reviews.each do |review|%>
+		<div class="other-review">
+			<h1><%= review["title"] %></h1>
+			<hr style="width: 20%;">
+			<h2><%= review["introduction"]%></h2>
+			<p><%= review["content"] %></p>
+			<p>RATING: <%= review["rating_category"]%></p>
+		</div>
+		<%end%>
+	</div>
 </div>
-<%end%>
-
-<%= link_to 'New Review', new_review_path %>
-
-<h1>Other Reviews</h1>
-<% @igdb_reviews.each do |review|%>
-<li>Id game:<%= review["id"]%></li>
-<li>Title:<%= review["title"] %></li>
-<p>Introduction:<%= review["introduction"]%></p>
-<p>Content:<%= review["content"] %></p>
-<p>Platform:<%= review["platform"]%></p>
-<p>Rating:<%= review["rating_category"]%></p>
-<%end%>

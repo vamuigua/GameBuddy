@@ -1,23 +1,26 @@
-<h1>Forums</h1>
-<% @forums.each do |forum| %>
-<div class="forum row clearfix">
-	<h2>
-	<%= link_to forum.title,forum %><br>
-	<small class="author">Created <%= time_ago_in_words(forum.created_at) %> by <%=forum.user.email%></small>
-	</h2>
-	<!--UPVOTE AND DOWNVOTE-->
-	<div class="btn-group">
-		<%= link_to "Checkout Forum", forum_path(forum),class:"btn btn-default btn-sn"%>
-		<%=link_to like_forum_path(forum), method: :put, class: "btn btn-default btn-sn" do %>
-		<span class="glyphicon glyphicon-chevron-up"></span>
-		Upvote
-		<%=forum.get_upvotes.size%>
-		<%end%>
-		<%=link_to dislike_forum_path(forum), method: :put, class: "btn btn-default btn-sn" do %>
-		<span class="glyphicon glyphicon-chevron-down"></span>
-		Downvote
-		<%=forum.get_downvotes.size%>
-		<%end%>
+<div class="forums-wrapper">
+	<h1 style="color: #F05F40;text-align: center;"><i>FORUMS</i></h1>
+	<hr>
+	<% @forums.each do |forum| %>
+	<div class="forum clearfix">
+		<h2>
+		<%= link_to forum.title,forum %><br>
+		<small class="author">Created <%= time_ago_in_words(forum.created_at) %> by <%=forum.user.email%></small>
+		</h2>
+		<!--UPVOTE AND DOWNVOTE-->
+		<div class="btn-group">
+			<%= link_to "Checkout Forum", forum_path(forum),class:"btn btn-default btn-sn"%>
+			<%=link_to like_forum_path(forum), method: :put, class: "btn btn-default btn-sn" do %>
+			<span class="glyphicon glyphicon-chevron-up"></span>
+			Upvote
+			<%=forum.get_upvotes.size%>
+			<%end%>
+			<%=link_to dislike_forum_path(forum), method: :put, class: "btn btn-default btn-sn" do %>
+			<span class="glyphicon glyphicon-chevron-down"></span>
+			Downvote
+			<%=forum.get_downvotes.size%>
+			<%end%>
+		</div>
 	</div>
+	<%end%>
 </div>
-<%end%>
